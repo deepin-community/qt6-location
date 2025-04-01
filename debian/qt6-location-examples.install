@@ -1,0 +1,7 @@
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/examples/location/itemview_transitions/itemview_transitions
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/examples/location/mapviewer/qml_location_mapviewer
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/examples/location/minimal_map/minimal_map
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/examples/location/places/qml_location_places
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/examples/location/places_list/places_list
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/examples/location/places_map/places_map
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/examples/location/planespotter/planespotter

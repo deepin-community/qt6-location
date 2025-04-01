@@ -1,0 +1,9 @@
+Document: qt6-location-manual
+Title: Qt 6 Location
+Author: The Qt Company Ltd
+Abstract: This is the HTML documentation for Qt 6 Location
+Section: Programming/C++
+
+Format: HTML
+Index: /usr/share/doc/qt6-location-doc-html/html/qtlocation/qtlocation-index.html
+Files: /usr/share/doc/qt6-location-doc-html/html/qtlocation/*.html

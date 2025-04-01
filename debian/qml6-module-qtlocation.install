@@ -1,0 +1,4 @@
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/qml/QtLocation/MapView.qml
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/qml/QtLocation/libdeclarative_locationplugin.so
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/qml/QtLocation/plugins.qmltypes
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/qml/QtLocation/qmldir
