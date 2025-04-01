@@ -48,7 +48,7 @@ void tst_QGeoJson::testGeojson()
         modelList.clear();
 
         QFile file(testDataDir +  QStringLiteral("/") + exampleGeometries[i]);
-        QVERIFY2(file.open(QFile::ReadOnly), qPrintable(file.errorString()));
+        file.open(QFile::ReadOnly);
 
         QByteArray testJson = file.readAll();
         originalDocument = QJsonDocument::fromJson(testJson);

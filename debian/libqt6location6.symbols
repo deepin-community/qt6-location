@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 6.8.2 amd64
+# SymbolsHelper-Confirmed: 6.8.0 amd64
 libQt6Location.so.6 libqt6location6 #MINVER#
 * Build-Depends-Package: qt6-location-dev
  NonQt@NonQt 6.7.2
@@ -364,36 +364,36 @@ libQt6Location.so.6 libqt6location6 #MINVER#
  _ZN18QPlaceSearchResultD1Ev@Qt_6 6.6.1
  _ZN18QPlaceSearchResultD2Ev@Qt_6 6.6.1
  _ZN18QPlaceSearchResultaSERKS_@Qt_6 6.6.1
- (optional=templinst)_ZN18QSharedDataPointerI13QPlacePrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI13QPlacePrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI17QPlaceIconPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI17QPlaceIconPrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI17QPlaceUserPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI17QPlaceUserPrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI18QGeoMapTypePrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI18QGeoMapTypePrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI19QGeoManeuverPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI19QGeoManeuverPrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI19QGeoTileSpecPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI19QGeoTileSpecPrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI20QPlaceRatingsPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI20QPlaceRatingsPrivateED2Ev@Qt_6 6.8.2
+ (optional=templinst)_ZN18QSharedDataPointerI13QPlacePrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI13QPlacePrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI17QPlaceIconPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI17QPlaceIconPrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI17QPlaceUserPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI17QPlaceUserPrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI18QGeoMapTypePrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI18QGeoMapTypePrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI19QGeoManeuverPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI19QGeoManeuverPrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI19QGeoTileSpecPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI19QGeoTileSpecPrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI20QPlaceRatingsPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI20QPlaceRatingsPrivateED2Ev@Qt_6 6.8.0
  (optional=templinst)_ZN18QSharedDataPointerI21QGeoCameraDataPrivateED1Ev@Qt_6 6.6.1
  (optional=templinst)_ZN18QSharedDataPointerI21QGeoCameraDataPrivateED2Ev@Qt_6 6.6.1
- (optional=templinst)_ZN18QSharedDataPointerI21QPlaceCategoryPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI21QPlaceCategoryPrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI21QPlaceSupplierPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI21QPlaceSupplierPrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI22QPlaceAttributePrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI22QPlaceAttributePrivateED2Ev@Qt_6 6.8.2
+ (optional=templinst)_ZN18QSharedDataPointerI21QPlaceCategoryPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI21QPlaceCategoryPrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI21QPlaceSupplierPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI21QPlaceSupplierPrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI22QPlaceAttributePrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI22QPlaceAttributePrivateED2Ev@Qt_6 6.8.0
  (optional=templinst)_ZN18QSharedDataPointerI25QPlaceMatchRequestPrivateED1Ev@Qt_6 6.6.1
  (optional=templinst)_ZN18QSharedDataPointerI25QPlaceMatchRequestPrivateED2Ev@Qt_6 6.6.1
- (optional=templinst)_ZN18QSharedDataPointerI26QPlaceContactDetailPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI26QPlaceContactDetailPrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI26QPlaceSearchRequestPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI26QPlaceSearchRequestPrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI27QPlaceContentRequestPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN18QSharedDataPointerI27QPlaceContentRequestPrivateED2Ev@Qt_6 6.8.2
+ (optional=templinst)_ZN18QSharedDataPointerI26QPlaceContactDetailPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI26QPlaceContactDetailPrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI26QPlaceSearchRequestPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI26QPlaceSearchRequestPrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI27QPlaceContentRequestPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN18QSharedDataPointerI27QPlaceContentRequestPrivateED2Ev@Qt_6 6.8.0
  (optional=templinst)_ZN18QSharedDataPointerI29QGeoCameraCapabilitiesPrivateED1Ev@Qt_6 6.6.1
  (optional=templinst)_ZN18QSharedDataPointerI29QGeoCameraCapabilitiesPrivateED2Ev@Qt_6 6.6.1
  _ZN19QGeoServiceProvider11qt_metacallEN11QMetaObject4CallEiPPv@Qt_6 6.6.1
@@ -538,14 +538,14 @@ libQt6Location.so.6 libqt6location6 #MINVER#
  _ZN27QPlaceSearchSuggestionReplyD0Ev@Qt_6 6.6.1
  _ZN27QPlaceSearchSuggestionReplyD1Ev@Qt_6 6.6.1
  _ZN27QPlaceSearchSuggestionReplyD2Ev@Qt_6 6.6.1
- (optional=templinst)_ZN28QExplicitlySharedDataPointerI16QGeoRoutePrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN28QExplicitlySharedDataPointerI16QGeoRoutePrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN28QExplicitlySharedDataPointerI20QPlaceContentPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN28QExplicitlySharedDataPointerI20QPlaceContentPrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN28QExplicitlySharedDataPointerI23QGeoRouteRequestPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN28QExplicitlySharedDataPointerI23QGeoRouteRequestPrivateED2Ev@Qt_6 6.8.2
- (optional=templinst)_ZN28QExplicitlySharedDataPointerI23QGeoRouteSegmentPrivateED1Ev@Qt_6 6.8.2
- (optional=templinst)_ZN28QExplicitlySharedDataPointerI23QGeoRouteSegmentPrivateED2Ev@Qt_6 6.8.2
+ (optional=templinst)_ZN28QExplicitlySharedDataPointerI16QGeoRoutePrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN28QExplicitlySharedDataPointerI16QGeoRoutePrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN28QExplicitlySharedDataPointerI20QPlaceContentPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN28QExplicitlySharedDataPointerI20QPlaceContentPrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN28QExplicitlySharedDataPointerI23QGeoRouteRequestPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN28QExplicitlySharedDataPointerI23QGeoRouteRequestPrivateED2Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN28QExplicitlySharedDataPointerI23QGeoRouteSegmentPrivateED1Ev@Qt_6 6.8.0
+ (optional=templinst)_ZN28QExplicitlySharedDataPointerI23QGeoRouteSegmentPrivateED2Ev@Qt_6 6.8.0
  _ZN6QPlace10setContentEN13QPlaceContent4TypeERK4QMapIiS0_E@Qt_6 6.6.1
  _ZN6QPlace10setPlaceIdERK7QString@Qt_6 6.6.1
  _ZN6QPlace10setRatingsERK13QPlaceRatings@Qt_6 6.6.1

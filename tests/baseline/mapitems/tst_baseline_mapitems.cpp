@@ -34,7 +34,6 @@ private Q_SLOTS:
     void initTestCase();
     void init();
     void cleanup();
-    void cleanupTestCase();
 
     void mapItems_data() { setupTestSuite(); }
     void mapItems() { runTest(); }
@@ -146,11 +145,6 @@ void tst_Baseline_MapItems::cleanup()
         QTest::qWait(20);
 }
 
-void tst_Baseline_MapItems::cleanupTestCase()
-{
-    QBaselineTest::finalizeAndDisconnect();
-}
-
 void tst_Baseline_MapItems::setupTestSuite()
 {
     QTest::addColumn<QString>("qmlFile");
@@ -231,6 +225,14 @@ bool tst_Baseline_MapItems::renderAndGrab(const QString& qmlFile, const QStringL
     return true;
 }
 
-QBASELINETEST_MAIN(tst_Baseline_MapItems)
+#define main _realmain
+QTEST_MAIN(tst_Baseline_MapItems)
+#undef main
+
+int main(int argc, char *argv[])
+{
+    QBaselineTest::handleCmdLineArgs(&argc, &argv);
+    return _realmain(argc, argv);
+}
 
 #include "tst_baseline_mapitems.moc"

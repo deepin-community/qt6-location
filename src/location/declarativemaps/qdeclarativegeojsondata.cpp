@@ -91,438 +91,18 @@ namespace extractor
     \brief A model to represent, load and save GeoJSON documents.
 
 
-    The GeoJsonData type reads and writes GeoJson formatted documents.
-    GeoJsonData has functions to open and save the model at the URL set
-    to the \l sourceUrl property. The loaded model is internally represented by
-    QVariant and binds to the \l model property. Use
-    \l{Models and Views in Qt Quick#View Delegates}{Delegates} to visualize the items
-    in a view.
+    The GeoJsonData element reads and writes GeoJson documents
+    (see the \l {https://en.wikipedia.org/wiki/GeoJSON}
+    {Wikipedia page}, \l {https://tools.ietf.org/html/rfc7946} {RFC}) from
+    the \l {sourceUrl}.
+    The respective data can be accessed as \l {QVariant} via the \l {model} property.
+    The \l {QVariant} representation can be used with delegates to visualize
+    the data or to make small modifications, e.g. adding new items with the
+    \l {addItem} function.
 
-    For information about GeoJSON, visit the \l{https://geojson.org/}{GeoJSON} website.
+    New data can be stored with the \l {save} and \l {saveAs} functions.
 
-    \section1 GeoJSON Object
-
-    The GeoJSON object is a valid JSON object that represents geometry, a feature, or a
-    collection of geometries or features.
-
-    A GeoJSON object must be one of these types:
-    \list
-        \li \c Point
-        \li \c MultiPoint
-        \li \c LineString
-        \li \c MultiLineString
-        \li \c Polygon
-        \li \c MultiPolygon
-        \li \c GeometryCollection
-        \li \c Feature
-        \li \c FeatureCollection
-    \endlist
-
-    To set the type, bind the \c type member to a GeoJSON type. The \c coordinates member can
-    be a type of QGeoShape or a list, depending on the GeoJSON type. The \c Feature type has an additional
-    \c geometry and \c properties member.
-
-    A list of the geometric types and their equivalent QVariant representations:
-
-    \list
-    \li For a \c Point object, \c coordinates pairs with QGeoCircle.
-        For example:
-        \code
-        {
-            "type": "Point",
-            "coordinates": [11, 60]
-        }
-        \endcode
-        This GeoJSON object has a corresponding QVariantMap representation:
-        \code
-        {
-            type: "Point"
-            coordinates: QGeoCircle({11.000, 60.000}, -1)
-        }
-        \endcode
-
-    \li For a \c LineString object, \c coordinates pairs with QGeoPath.
-        For example:
-        \code
-        {
-            "type" : "LineString",
-            "coordinates" : [
-            [13.5, 43],
-            [10.73, 59.92]
-            ]
-        }
-        \endcode
-        This GeoJSON object has a corresponding QVariantMap representation:
-        \code
-        {
-            type : "LineString"
-            data : QGeoPath([{43.000, 13.500}, {59.920, 10.730}])
-        }
-        \endcode
-
-    \li For a \c{Polygon} object, \c coordinates member pairs with QGeoPolygon (holes are possible). The polygon is a
-        \e{linear ring}, whose final coordinate is the same as the first coordinate, thereby opening and closing
-        the ring. The \c bbox member is an optional member and is for setting the area's range, useful for concave boundaries.
-        For more information about the accepted polygon coordinates, read about the
-        \l{https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.6Polygon}{Polygon} type in the GeoJson specification.
-        For example:
-        \code
-        {
-            "type": "Polygon",
-            "coordinates": [
-                [
-                    [17.13, 51.11],
-                    [30.54, 50.42],
-                    [26.70, 58.36],
-                    [17.13, 51.11]
-                ]
-            ],
-            "bbox": [50, -50, 10, -10]
-        }
-        \endcode
-        This GeoJSON object has a corresponding QVariantMap representation:
-        \code
-        {
-            type : "Polygon"
-            coordinates : QGeoPolygon([{51.110, 17.130}, {50.420,30.540}, {58.360, 26.700}, {51.110, 17.130}])
-        }
-        \endcode
-
-    \endlist
-
-    For the \c MultiPoint, \c MultiLineString, and \c MultiPolygon types, \c coordinates pairs with a QVariantList.
-    The list element is a QVariantMap containing geometry.
-
-    \list
-    \li For a \c MultiPoint object, \c coordinates pairs with a list of Point coordinates.
-        For example:
-        \code
-        {
-            "type": "MultiPoint",
-            "coordinates": [
-                [11, 60],
-                [5.5, 60.3],
-                [5.7, 58.90]
-            ]
-        }
-        \endcode
-        This GeoJSON object has a corresponding QVariantMap representation:
-        \code
-        {
-            type : "MultiPoint"
-            coordinates : [
-                {
-                    type : "Point"
-                    coordinates : QGeoCircle({60.000, 11.000}, -1)
-                },
-                {
-                    type : "Point"
-                    coordinates : QGeoCircle({60.300, 5.500}, -1)
-                },
-                {
-                    type : "Point"
-                    coordinates : QGeoCircle({58.900, 5.700}, -1)
-                }
-                ]
-        }
-        \endcode
-
-    \li For a \c MultiLineString object, \c coordinates pairs with a list of LineString coordinates.
-        The following GeoJSON object constructs two non-parallel lines:
-        \code
-        {
-            "type" : "MultiLineString",
-            "coordinates" : [
-            [[13.5, 43], [10.73, 59.92]],
-            [[9.15, 45], [-3.15, 58.90]]
-            ]
-        }
-        \endcode
-        This GeoJSON object has a corresponding QVariantMap representation:
-        \code
-        {
-            type : "MultiLineString"
-            coordinates : [
-                {
-                    type : "LineString"
-                    coordinates : QGeoPath([{45.000, 9.150}, {58.900, -3.150}])
-                },
-                {
-                    type : "LineString"
-                    coordinates : QGeoPath([{43.000, 13.500}, {59.920, 10.730}])
-                }
-            ]
-        }
-        \endcode
-
-    \li For a \c MultiPolygon type, \c coordinates pairs with a list of Polygon coordinates.
-        The polygon is a \e{linear ring} and the \c Polygon type has more information about accepted formats.
-        The following GeoJSON object contains a list of two triangles:
-        \code
-        {
-            "type" : "MultiPolygon",
-            "coordinates" : [
-            [
-                [[17.13, 51.11],
-                [30.54, 50.42],
-                [26.74, 58.36],
-                [17.13, 51.11]
-                ]],
-            [
-                [[19.84, 41.33],
-                [30.45, 49.26],
-                [17.07, 50.10],
-                [19.84, 41.33]
-                ]]
-            ]
-        }
-        \endcode
-        This GeoJSON object has a corresponding QVariantMap representation:
-        \code
-        {
-            type : "MultiPolygon"
-            coordinates : [
-                {
-                    type : "Polygon"
-                    coordinates : QGeoPolygon([{51.110, 17.130}, {50.420,30.540}, {58.360, 26.740}])
-                },
-                {
-                    type : "Polygon"
-                    coordinates : QGeoPolygon([{41.330, 19.840}, {49.260,30.450}, {50.100, 17.070}])
-                }
-                ]
-        }
-        \endcode
-
-    \endlist
-
-    The \c GeometryCollection type is a composition of other geometry types. The value of the
-    \c geometries member is a QVariantList containing QVariantMaps of various types,
-    including other GeometryCollection types.
-
-    For example, the following \c GeometryCollection type contains several other geometries:
-    \code
-    {
-        "type" : "GeometryCollection",
-        "geometries" : [
-            {
-                "type" : "MultiPoint",
-                "coordinates" : [
-                    [11,60], [5.5,60.3], [5.7,58.90]
-                ]
-            },
-            {
-                "type" : "MultiLineString",
-                "coordinates": [
-                    [[13.5, 43], [10.73, 59.92]],
-                    [[9.15, 45], [-3.15, 58.90]]
-                ]
-            },
-            {
-                "type" : "MultiPolygon",
-                "coordinates" : [
-                    [
-                        [
-                            [17.13, 51.11],
-                            [30.54, 50.42],
-                            [26.74, 58.36],
-                            [17.13, 51.11]
-                        ]
-                    ],
-                    [
-                        [
-                            [19.84, 41.33],
-                            [30.45, 49.26],
-                            [17.07, 50.10],
-                            [19.84, 41.33]
-                        ]
-                    ]
-                ]
-            }
-        ]
-    }
-    \endcode
-    This GeoJSON object has a corresponding QVariantMap representation:
-    \code
-    {
-      type : "GeometryCollection"
-      coordinates : [
-        {
-          type : "MultiPolygon"
-          coordinates : [
-            {
-              type : "Polygon"
-              coordinates : QGeoPolygon([{41.330, 19.840}, {49.260, 30.450}, {50.100, 17.070}])
-            },
-            {
-              type : "Polygon"
-              coordinates : QGeoPolygon([{51.110, 17.130}, {50.420, 30.540}, {58.360, 26.740}])
-            }
-          ]
-        }
-        {
-          type : "MultiLineString"
-          coordinates : [
-            {
-              type : "LineString"
-              coordinates : QGeoPath([{45.000, 9.150}, {58.900, -3.150}])
-            },
-            {
-              type : "LineString"
-              coordinates : QGeoPath([{43.000, 13.500}, {59.920, 10.730}])
-            }
-          ]
-        }
-        {
-          type : "MultiPoint"
-          coordinates : [
-            {
-              type : Point
-              coordinates : QGeoCircle({58.900, 5.700}, -1)
-            },
-            {
-              type : Point
-              coordinates : QGeoCircle({60.300, 5.500}, -1)
-            },
-            {
-              type : Point
-              coordinates : QGeoCircle({60.000, 11.000}, -1)
-            }
-          ]
-        }
-      ]
-    }
-    \endcode
-
-    The \c Feature type contains an additional \c geometry and \c properties
-    member. The only way to distinguish a Feature object from other geometrical objects
-    is to check for the existence of a \c properties node in the QVariantMap object.
-
-    For example, the following \c Feature has a geometry and properties members:
-    \code
-    {
-        "type": "Feature",
-        "id": "Poly",
-        "properties": {
-            "name": "Poly",
-            "text": "This is a Feature with a Polygon",
-            "color": "limegreen"
-        },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
-                [
-                    [17.13, 51.11],
-                    [30.54, 50.42],
-                    [26.70, 58.36],
-                    [17.13, 51.11]
-                ],
-                [
-                    [23.46, 54.36],
-                    [20.52, 51.91],
-                    [28.25, 51.50],
-                    [26.80, 54.36],
-                    [23.46, 54.36]
-                ]
-            ]
-        }
-    }
-    \endcode
-    This GeoJSON object has a corresponding QVariantMap representation:
-    \code
-    {
-      type : "Polygon"
-      data : QGeoPolygon([{51.110, 17.130}, {50.420,30.540}, {58.360, 26.700}, {51.110, 17.130}])
-      properties : {text : "This is a Feature with a Polygon"}
-    }
-    \endcode
-
-    The \c FeatureCollection is a composition of Feature objects. THe \c features
-    member binds to a QVariantList object containing other Feature objects.
-
-    For example, the following \c FeatureCollection has several Features and geometries:
-    \code
-    {
-        "type" : "FeatureCollection",
-        "properties" : {
-            "color" : "crimson"
-        },
-        "features" : [
-            {
-                "type" : "Feature",
-                "id" : "Poly",
-                "properties" : {
-                    "text" : "This is a Feature with a Polygon"
-                },
-                "geometry" : {
-                "type" : "Polygon",
-                "coordinates" : [
-                    [
-                        [17.13, 51.11],
-                        [30.54, 50.42],
-                        [26.70, 58.36],
-                        [17.13, 51.11]
-                    ],
-                    [
-                        [23.46, 54.36],
-                        [20.52, 51.91],
-                        [28.25, 51.50],
-                        [26.80, 54.36],
-                        [23.46, 54.36]
-                    ]
-                ]
-            }
-        },
-        {
-            "type" : "Feature",
-            "id" : "MultiLine",
-            "properties" : {
-                "text" : "This is a Feature with a MultiLineString",
-                "color" : "deepskyblue"
-            },
-            "geometry" : {
-                "type" : "MultiLineString",
-                "coordinates" : [
-                    [[13.5, 43], [10.73, 59.92]],
-                    [[9.15, 45], [-3.15, 58.90]]
-                ]
-            }
-        }
-        ]
-    }
-    \endcode
-    This GeoJSON object has a corresponding QVariantMap representation:
-    \code
-    {
-        type: "FeatureCollection"
-        data: [{
-                type: "MultiLineString"
-                data: [{
-                    type: "LineString"
-                    data: QGeoPath( [{45.000, 9.150}, {58.900, -3.150}] )
-                } {
-                    type: "LineString"
-                    data: QGeoPath( [{43.000, 13.500}, {59.920, 10.730}] )
-                }]
-                properties: { text: "This is a Feature with a MultiLineString" }
-            },
-            {
-                type: "Polygon"
-                data: QGeoPolygon(  {51.110, 17.130},
-                                    {50.420, 30.540},
-                                    {58.360, 26.700},
-                                    {51.110, 17.130}
-                                )
-                properties: { text: "This is a Feature with a Polygon" }
-            }
-        ]
-    }
-    \endcode
-
-    \section1 GeoJson Example
-
-    The \l{GeoJson Viewer (QML)}{GeoJson Viewer} example demonstrates the use of the GeoJsonData QML type to
-    load and visualize coordinates on a map.
+    \sa QGeoJson
 */
 
 
@@ -540,8 +120,8 @@ QDeclarativeGeoJsonData::~QDeclarativeGeoJsonData()
 /*!
     \qmlproperty QVariant QtLocation::GeoJsonData::model
 
-    A QVariant representation of the GeoJSON document. QML
-    delegates can display the contents in views.
+    A \l QVariant representation of the GeoJSON document that
+    can be used to display the contents with delegates.
 
     \since 6.7
 */
@@ -560,8 +140,8 @@ void QDeclarativeGeoJsonData::setModel(const QVariant &model)
 /*!
     \qmlproperty QUrl QtLocation::GeoJsonData::sourceUrl
 
-    The URL of a GeoJSON document. Setting this property loads the
-    document and binds the object to the \l model member.
+    The URL from which the GeoJSON document is read. Setting this
+    property will change the \l model to represent the respective document.
 
     \since 6.7
 */
@@ -575,7 +155,7 @@ QUrl QDeclarativeGeoJsonData::sourceUrl() const
 /*!
     \qmlmethod void QtLocation::GeoJsonData::clear()
 
-    Deletes all items bound to the \l model.
+    Delete all items in the \l model of the GeoJsonData.
 */
 void QDeclarativeGeoJsonData::clear()
 {
@@ -586,9 +166,9 @@ void QDeclarativeGeoJsonData::clear()
 /*!
     \qmlmethod bool QtLocation::GeoJsonData::addItem(Item item)
 
-    Adds the \a item to the \l model object.
+    Add the \a item to the \l model of the GeoJsonData.
 
-    Returns \c true if adding is successful, \c false otherwise.
+    Returns \c true if the file was read successfully, \c false otherwise.
 */
 void QDeclarativeGeoJsonData::addItem(QQuickItem *item)
 {
@@ -620,9 +200,9 @@ void QDeclarativeGeoJsonData::addItem(QQuickItem *item)
 /*!
     \qmlmethod bool QtLocation::GeoJsonData::open()
 
-    Loads the content of the file at \l sourceUrl.
+    Reload the content of the file at \l sourceUrl.
 
-    Returns \c true if opening is successful, \c false otherwise.
+    Returns \c true if the file was read successfully, \c false otherwise.
 */
 bool QDeclarativeGeoJsonData::open()
 {
@@ -632,10 +212,10 @@ bool QDeclarativeGeoJsonData::open()
 /*!
     \qmlmethod bool QtLocation::GeoJsonData::openUrl(Url url)
 
-    Loads the GeoJson document at \a url and binds it to the \l model. The property
-    \l sourceUrl is set to \a url if opening the file is successful.
+    Open the GeoJson file at \a url and load its content. The property
+    \l sourceUrl will be set to \a url if the file is read successfully.
 
-    Returns \c true if opening is successful, \c false otherwise.
+    Returns \c true if the file was read successfully, \c false otherwise.
 */
 bool QDeclarativeGeoJsonData::openUrl(const QUrl &url)
 {
@@ -668,10 +248,10 @@ bool QDeclarativeGeoJsonData::openUrl(const QUrl &url)
 /*!
     \qmlmethod bool QtLocation::GeoJsonData::saveAs(Url url)
 
-    Saves the \l model at \a url.
-    The \l sourceUrl property is set to \a url if successful.
+    The current \l model of the GeoJsonData object is saved under \a url.
+    The \l sourceUrl property will be set to \a url.
 
-    Returns \c true if saving is successful, \c false otherwise.
+    Returns \c true if the file was saved successfully, \c false otherwise.
 */
 bool QDeclarativeGeoJsonData::saveAs(const QUrl &url)
 {
@@ -685,9 +265,10 @@ bool QDeclarativeGeoJsonData::saveAs(const QUrl &url)
 /*!
     \qmlmethod bool QtLocation::GeoJsonData::save()
 
-    Saves the model at \l{sourceUrl}.
+    The current \l model of the GeoJsonData object is saved under
+    \l sourceUrl.
 
-    Returns \c true if saving is successful, \c false otherwise.
+    Returns \c true if the file was saved successfully, \c false otherwise.
 */
 bool QDeclarativeGeoJsonData::save()
 {
@@ -697,10 +278,11 @@ bool QDeclarativeGeoJsonData::save()
 /*!
     \qmlmethod void QtLocation::GeoJsonData::setModelToMapContents(MapView mapItemView)
 
-    Adds all map items of \a mapItemView to the \l model of the GeoJsonData
-    object. Deletes previously stored map items from the \l model.
+    All mapItems of \a mapItemView are added to the \l model of the GeoJsonData
+    object.
+    Previously stored mapItems are deleted from the \l model.
 
-    Returns \c true if setting is successful, \c false otherwise.
+    Returns \c true if mapItemView is set successfully, \c false otherwise.
 
     \sa addItem
 */
