@@ -1,0 +1,2 @@
+usr/include/${DEB_HOST_MULTIARCH}/qt6/QtLocation/6.*/QtLocation/private/*.h
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/mkspecs/modules/qt_lib_location_private.pri

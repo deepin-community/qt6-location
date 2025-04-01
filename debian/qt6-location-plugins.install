@@ -1,0 +1,2 @@
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/plugins/geoservices/libqtgeoservices_itemsoverlay.so
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/plugins/geoservices/libqtgeoservices_osm.so
