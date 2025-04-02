@@ -1,18 +1,8 @@
-qt6-location (6.8.2-2) unstable; urgency=medium
+qt6-location (6.8.0-0deepin1) unstable; urgency=medium
 
-  * Upload to unstable.
+  * update Qt 6.8.0.
 
- -- Patrick Franz <deltaone@debian.org>  Sat, 01 Mar 2025 12:44:27 +0100
-
-qt6-location (6.8.2-1) experimental; urgency=medium
-
-  [ Patrick Franz ]
-  * New upstream release (6.8.2).
-  * Bump Qt B-Ds to 6.8.2.
-  * Update list of installed files.
-  * Update symbols from buildlogs.
-
- -- Patrick Franz <deltaone@debian.org>  Sun, 09 Feb 2025 10:57:18 +0100
+ -- lichenggang <lichenggang@deepin.org>  Wed, 02 Apr 2025 10:22:31 +0800
 
 qt6-location (6.7.2-4) unstable; urgency=medium
 

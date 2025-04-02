@@ -16,6 +16,7 @@ Build-Depends: cmake (>= 3.24~),
                qt6-positioning-dev (>= 6.8.0~),
                qt6-positioning-private-dev (>= 6.8.0~),
                qt6-shadertools-dev (>= 6.8.0~),
+	       qml6-module-qt-labs-animation,
 Build-Depends-Indep: qt6-base-dev (>= 6.8~) <!nodoc>,
                      qt6-documentation-tools (>= 6.8~) <!nodoc>,
 Standards-Version: 4.7.0
